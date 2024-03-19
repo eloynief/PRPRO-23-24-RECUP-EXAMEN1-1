@@ -1,17 +1,20 @@
 [
     {
-        "Id": 1,
-        "Titulo": "Penith",
-        "AñoLanzamiento": 1922
+        "id": 1,
+        "Titulo": "P",
+        "AñoLanzamiento": 1922, 
+        "idPelicula":1
     },
     {
-        "Id": 2,
-        "Titulo": "<NAME>",
-        "AñoLanzamiento": 1923
+        "id": 2,
+        "Titulo": "Freddy fazbear",
+        "AñoLanzamiento": 1923, 
+        "idPelicula":1
     },
     {
-        "Id": 3,
+        "id": 3,
         "Titulo": "<NAME>",
-        "AñoLanzamiento": 1924
+        "AñoLanzamiento": 1924, 
+        "idPelicula":1
     }
 ]

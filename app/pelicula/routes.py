@@ -1,4 +1,4 @@
-from flask import Blueprint,jsonify,json
+from flask import Blueprint,jsonify,json,request
 from utils.functions import *
 
 from actor.routes import *
@@ -36,28 +36,81 @@ def get_pelicula(id):
     return {"error":"Pelicula not found"},404
     
    
-@peliculasBP.get('/<int:id>/actores')
-def get_actores(id):
-    #lista para añadir los 
-    lista=[]
+@peliculasBP.get('/<int:idPelicula>/actores')
+def get_actores(idPelicula):
     
-    peliculas=lecturaFichero(rutaActores)
+    actores=lecturaFichero(rutaActores)
     
     #por cada elemento json de los elementos jsonde la tabla
-    for pelicula in peliculas:
+    for actor in actores:
         
-        if pelicula["id"]==id:
+        if actor["id"]==idPelicula:
             
-            return pelicula,200
+            return actor,200
     
     
     return {"error":"Pelicula not found"},404
     
     
+
+
+@peliculasBP.put('/<int:id>')
+def put_peliculas(id):
+    if request.is_json:
+        
+        data=request.get_json()
+        
+        peliculas=lecturaFichero(rutaPeliculas)
+        
+        #por cada elemento json de los elementos jsonde la tabla
+        for pelicula in peliculas:
+            
+            if pelicula["id"]==id:
+                
+                
+                #se modifican los elementos
+                for elementoPelicula in data:
+                    
+                    pelicula[elementoPelicula]=data[elementoPelicula]
+                    
+                escribeFichero(rutaPeliculas,pelicula)
+                    
+                return pelicula,200
+            
+        data["id"]=id
+        peliculas.append(data)
+        escribeFichero(rutaPeliculas,pelicula)
+                
+    
+    
+    return {"error":"Pelicula not found"},404
     
 
 
-
-
+@peliculasBP.delete('/<int:id>')
+def delete_peliculas(id):
+    
+    if request.is_json:
+        
+        data=request.get_json()
+        
+        peliculas=escribeFichero(rutaPeliculas)
+        
+        #por cada elemento json de los elementos jsonde la tabla
+        for pelicula in peliculas:
+            
+            if pelicula["id"]==id:
+                
+                
+                #se modifican los elementos
+                for elementoPelicula in pelicula:
+                    
+                    pelicula[elementoPelicula]=data[elementoPelicula]
+                
+                
+                return pelicula,200
+    
+    
+    return {"error":"Pelicula not found"},404
 
 
