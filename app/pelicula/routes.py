@@ -1,7 +1,7 @@
 from flask import Blueprint,jsonify,json,request
 from utils.functions import *
 
-from actor.routes import *
+from actor.routes import rutaActores
 
 #bp con su nombre
 peliculasBP=Blueprint('peliculas',__name__)

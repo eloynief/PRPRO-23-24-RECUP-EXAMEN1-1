@@ -1,6 +1,6 @@
 from flask import *
-from actor.routes import *
-from pelicula.routes import *
+from actor.routes import actoresBP
+from pelicula.routes import peliculasBP
 
 
 #objeto
